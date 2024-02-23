@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript Geolocation API Example</title>
+  </head>
+  <body>
+    <h1>JavaScript Geolocation API Example</h1>
+    <h2>Click the button to pinpoint your location on a map</h2>
+    <button id="getLocation">Get Location</button>
+    <br />
+    <a id="locationResult" target="_blank"></a>
+    <script>
+      const locationResult = document.querySelector('#locationResult');
+      document.querySelector('#getLocation').addEventListener('click', () => {
+        locationResult.textContent = 'Retrieving User Location...';
+
+        function success({ coords }) {
+          locationResult.textContent = 'See my location on a map';
+          locationResult.href = `https://www.openstreetmap.org?mlat=${coords.latitude}&mlon=${coords.longitude}`;
+        }
+
+        navigator.geolocation.getCurrentPosition(success);
+      });
+    </script>
+  </body>
+</html>
